@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c0J-ny-NJc">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--NyTimes-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="NyTimes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="prominent" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NMA-Bw-xgZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="10" vertical="0.0"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x21-6a-czE">
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NMA-Bw-xgZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3wW-8H-83h"/>
+                            <constraint firstItem="NMA-Bw-xgZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9qh-nu-Yu6"/>
+                            <constraint firstItem="x21-6a-czE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ba9-ZK-D5A"/>
+                            <constraint firstItem="NMA-Bw-xgZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Iyf-EE-c6X"/>
+                            <constraint firstItem="x21-6a-czE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SWs-RR-hNk"/>
+                            <constraint firstAttribute="bottom" secondItem="x21-6a-czE" secondAttribute="bottom" id="Tlq-vp-Qqf"/>
+                            <constraint firstItem="x21-6a-czE" firstAttribute="top" secondItem="NMA-Bw-xgZ" secondAttribute="bottom" id="oCc-a3-1Hf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="NyTimes" id="NqU-vl-iep">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="58z-vW-nrg"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="126.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="I4t-V2-rmC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0J-ny-NJc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CfP-rr-5NY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="V07-x6-J83"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Kc-o1-9sr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+    </resources>
+</document>
