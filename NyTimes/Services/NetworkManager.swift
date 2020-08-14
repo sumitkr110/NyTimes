@@ -17,7 +17,7 @@ class NetworkManager {
     
     private let jsonDecoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.keyDecodingStrategy = .useDefaultKeys
         return jsonDecoder
     }()
     
