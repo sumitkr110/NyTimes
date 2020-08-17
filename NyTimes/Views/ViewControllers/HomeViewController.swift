@@ -12,9 +12,15 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var datePickerButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    var datePickerView: UIView = UIView()
+    var datePickerView: UIView? = nil
     var datePicker : UIDatePicker = UIDatePicker()
-    let viewModel : HomeViewModel = HomeViewModel()
+    let dataSource = HomeTableViewDataSource()
+    let delegate = HomeTableViewDelegate()
+    lazy var viewModel : HomeViewModel = {
+        let viewModel = HomeViewModel(dataSource:dataSource , delegate: delegate)
+        return viewModel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,21 +31,16 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     //Table View SetUp
     func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
         tableView.register(UINib.init(nibName:BookListTableCell.cellIdentifier() , bundle: nil), forCellReuseIdentifier: BookListTableCell.cellIdentifier())
     }
     //Data binding with View Model
     func bindData(){
-        viewModel.sectionVMs.addObserver(fireNow: false) { [weak self] sectionVMs in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-                self?.tableView.isHidden = false
-            }
-        }
         viewModel.bookCount.addObserver(fireNow: false) { [weak self] bookCount in
             DispatchQueue.main.async {
                 if bookCount == 0{
+               self?.tableView.isHidden = true
                self?.showAlertForBookUnavailability()
                 }
             }
@@ -57,12 +58,15 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 }
                 else{
                     self?.view.activityStopAnimating()
+                    self?.tableView.isHidden = false
+                     self?.tableView.reloadData()
                 }
             }
         }
     }
     @IBAction func showDatePicker(_ sender: UIBarButtonItem) {
         self.showDatePicker()
+        searchBar.resignFirstResponder()
     }
     func showAlertForBookUnavailability() {
         let alert = UIAlertController(title: Constant.noBookAlertTitle, message: Constant.noBookAlertMessage, preferredStyle: UIAlertController.Style.alert)
@@ -73,62 +77,28 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
 }
 
-//MARK: - UITableView DataSource
-extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionVMs.value.count
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.sectionVMs.value[section].rowViewModels.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  rowVM = viewModel.sectionVMs.value[indexPath.section].rowViewModels[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier:BookListTableCell.cellIdentifier(), for: indexPath)
-        if let cell = cell as? CellConfigurable{
-            cell.setup(viewModel: rowVM)
-        }
-        return cell
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.sectionVMs.value[section].headerTitle
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(Constant.tableViewSectionHeight)
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: CGFloat(Constant.tableViewSectionHeight)))
-        headerView.backgroundColor = Constant.tableViewSectionBackgroundColor
-        let label = UILabel()
-        label.frame = headerView.frame
-        label.text = viewModel.sectionVMs.value[section].headerTitle
-        label.font = Constant.tableViewSectionTitleFont
-        headerView.addSubview(label)
-        return headerView
-    }
-}
-
 //MARK: - Date Picker implementation
 extension HomeViewController{
     
     func showDatePicker(){
-        datePickerView = UIView(frame: CGRect(x: 0, y: view.frame.height - CGFloat(Constant.datePickerViewHeight), width: view.frame.width, height: CGFloat(Constant.datePickerViewHeight)))
-        datePickerView.backgroundColor = .white
-        //ToolBar
-        let toolbar = self.getConfiguredToolBarForDatePicker()
-        datePickerView.addSubview(toolbar)
-        datePicker = UIDatePicker(frame: CGRect(x: 0, y: toolbar.frame.height, width: view.frame.width, height: datePickerView.frame.height-toolbar.frame.height))
-        //Format Date
-        datePicker.datePickerMode = .date
-        datePicker.maximumDate = Date()
-        datePickerView.addSubview(datePicker)
-        self.view.addSubview(datePickerView)
+       if datePickerView == nil {
+            self.searchBar.text = ""
+            datePickerView = UIView(frame: CGRect(x: 0, y: view.frame.height - CGFloat(Constant.datePickerViewHeight), width: view.frame.width, height: CGFloat(Constant.datePickerViewHeight)))
+            datePickerView?.backgroundColor = .white
+            //ToolBar
+            let toolbar = self.getConfiguredToolBarForDatePicker()
+            datePickerView?.addSubview(toolbar)
+            datePicker = UIDatePicker(frame: CGRect(x: 0, y: toolbar.frame.height, width: view.frame.width, height: datePickerView!.frame.height-toolbar.frame.height))
+            //Format Date
+            datePicker.datePickerMode = .date
+            datePicker.maximumDate = Date()
+            datePickerView?.addSubview(datePicker)
+            self.view.addSubview(datePickerView!)
+        }
     }
     
     func getConfiguredToolBarForDatePicker() -> UIToolbar {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: datePickerView.frame.width, height: CGFloat(Constant.toolBarHeight)))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: datePickerView!.frame.width, height: CGFloat(Constant.toolBarHeight)))
         toolbar.barStyle = .black
         toolbar.isTranslucent =  true
         toolbar.tintColor = .white
@@ -142,11 +112,13 @@ extension HomeViewController{
         let date = datePicker.date.string(format: Constant.dateFormat)
         viewModel.isLoading.value = true
         viewModel.fetchBookListForDate(date:date)
-        datePickerView.removeFromSuperview()
+        datePickerView?.removeFromSuperview()
+        datePickerView = nil
     }
     
     @objc func cancelDatePicker(){
-        datePickerView.removeFromSuperview()
+        datePickerView?.removeFromSuperview()
+        datePickerView = nil
     }
 }
 //MARK: - UISearchBarDelegate implementation

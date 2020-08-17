@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 class HomeViewModel {
-    var sectionVMs = Observable<[SectionViewModel]> (value: [])
-    var bookList =  Observable<[SectionViewModel]> (value: [])
+    var dataSource : GenericDataSource<SectionViewModel>?
+    var delegate : GenericDataSource<SectionViewModel>?
+    var bookList =  [SectionViewModel]()
     var filteredList = Observable<[SectionViewModel]> (value: [])
     var isLoading = Observable<Bool> (value: true)
     var isFiltering: Bool = false
     var bookCount = Observable<Int> (value: 0)
-    
+    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+    }
     func fetchBookListForDate(date : String)  {
         HomeAPIService.getBookListForPublishedDate(date:date) {[weak self] (result) in
             switch result{
@@ -25,8 +29,13 @@ class HomeViewModel {
                 self?.isLoading.value = false
             case .failure(let error):
                 print(error)
-                self?.bookCount.value = 0//Setting the viewModel bookCount to 0 to show book unavailability alert as we are getting inconsistent response from backend. In case of Empty result we are getting Array in response but we are expecting dictionary
                 self?.isLoading.value = false
+                switch error {
+                case .decodeError:
+                    self?.bookCount.value = 0//Setting the viewModel bookCount to 0 to show book unavailability alert as we are getting inconsistent response from backend. In case of Empty result we are getting Array in response but we are expecting dictionary
+                default:
+                    ""
+                }
             }
         }
     }
@@ -42,23 +51,24 @@ class HomeViewModel {
                 let section = SectionViewModel(rowViewModels: rows, headerTitle: list.displayName)
                 sections.append(section)
             }
-        bookList.value = sections
-        sectionVMs.value = sections
+        bookList = sections
+        self.dataSource?.data.value = sections
+        self.delegate?.data.value = sections
     }
     func filterBooksForSearchText(searchText:String)  {
         self.isFiltering = searchText.count>0 ? true : false
         self.filteredList.value = [SectionViewModel]()
-        for section in self.bookList.value{
+        for section in self.bookList{
             let filteredSection = self.filterBooksForSectionWithSeachText(section: section.rowViewModels, searchText: searchText)
             if(filteredSection.count>0){
                 let sectionVM = SectionViewModel(rowViewModels: filteredSection, headerTitle: section.headerTitle)
                 self.filteredList.value.append(sectionVM)
             }
             if isFiltering{
-                self.sectionVMs = self.filteredList
+                self.dataSource?.data.value = self.filteredList.value
             }
             else{
-                self.sectionVMs = self.bookList
+                self.dataSource?.data.value = self.bookList
             }
         }
     }

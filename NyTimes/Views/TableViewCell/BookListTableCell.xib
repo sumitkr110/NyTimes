@@ -24,19 +24,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-mT-GDk">
-                        <rect key="frame" x="116" y="16" width="40" height="19.5"/>
+                        <rect key="frame" x="116" y="16" width="280" height="20"/>
                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sft-Hd-HLo">
-                        <rect key="frame" x="116" y="69" width="75.5" height="19"/>
+                        <rect key="frame" x="116" y="69.5" width="280" height="18.5"/>
                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Contributor :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpK-21-YEG">
-                        <rect key="frame" x="116" y="96" width="91.5" height="17.5"/>
+                        <rect key="frame" x="116" y="96" width="280" height="17.5"/>
                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -48,21 +48,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cba-7Q-JOo">
-                        <rect key="frame" x="116" y="43.5" width="54" height="17.5"/>
+                        <rect key="frame" x="116" y="44" width="280" height="17.5"/>
                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="LpK-21-YEG" firstAttribute="trailing" secondItem="pVZ-mT-GDk" secondAttribute="trailing" id="24i-WZ-0eC"/>
                     <constraint firstItem="LpK-21-YEG" firstAttribute="top" secondItem="sft-Hd-HLo" secondAttribute="bottom" constant="8" id="41H-5I-fwJ"/>
                     <constraint firstItem="dXB-fv-Db0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="8Ek-NX-dMB"/>
                     <constraint firstAttribute="trailing" secondItem="b6k-xm-RYO" secondAttribute="trailing" constant="16" id="AOa-XF-lp2"/>
                     <constraint firstItem="cba-7Q-JOo" firstAttribute="top" secondItem="pVZ-mT-GDk" secondAttribute="bottom" constant="8" id="EdD-s5-dJE"/>
                     <constraint firstItem="pVZ-mT-GDk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="FqW-j7-oxb"/>
+                    <constraint firstItem="LpK-21-YEG" firstAttribute="trailing" secondItem="sft-Hd-HLo" secondAttribute="trailing" id="Rd9-Dw-7D1"/>
+                    <constraint firstItem="sft-Hd-HLo" firstAttribute="trailing" secondItem="pVZ-mT-GDk" secondAttribute="trailing" id="SGZ-w6-Gy6"/>
                     <constraint firstItem="pVZ-mT-GDk" firstAttribute="leading" secondItem="dXB-fv-Db0" secondAttribute="trailing" constant="16" id="Vqb-UD-kl9"/>
                     <constraint firstAttribute="bottom" secondItem="b6k-xm-RYO" secondAttribute="bottom" constant="8" id="clA-IC-hyx"/>
+                    <constraint firstItem="cba-7Q-JOo" firstAttribute="trailing" secondItem="pVZ-mT-GDk" secondAttribute="trailing" id="h1D-Dq-1uT"/>
                     <constraint firstItem="b6k-xm-RYO" firstAttribute="leading" secondItem="pVZ-mT-GDk" secondAttribute="leading" id="kXF-2A-NST"/>
+                    <constraint firstAttribute="trailing" secondItem="pVZ-mT-GDk" secondAttribute="trailing" constant="16" id="mh2-vc-g1N"/>
                     <constraint firstItem="sft-Hd-HLo" firstAttribute="top" secondItem="cba-7Q-JOo" secondAttribute="bottom" constant="8" id="nlk-eo-DHn"/>
                     <constraint firstItem="dXB-fv-Db0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pfL-fB-aWC"/>
                     <constraint firstItem="LpK-21-YEG" firstAttribute="leading" secondItem="sft-Hd-HLo" secondAttribute="leading" id="q5O-TE-6xH"/>
@@ -80,7 +85,7 @@
                 <outlet property="bookPublisherLabel" destination="sft-Hd-HLo" id="cXl-wy-g61"/>
                 <outlet property="bookTitleLabel" destination="pVZ-mT-GDk" id="SDP-Kd-D9x"/>
             </connections>
-            <point key="canvasLocation" x="128.98550724637681" y="70.982142857142847"/>
+            <point key="canvasLocation" x="128.98550724637681" y="70.647321428571431"/>
         </tableViewCell>
     </objects>
 </document>
