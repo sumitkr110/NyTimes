@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookListTableCell: UITableViewCell,CellConfigurable {
+class BookListTableCell: UITableViewCell {
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitleLabel: UILabel!
@@ -20,7 +20,13 @@ class BookListTableCell: UITableViewCell,CellConfigurable {
         super.awakeFromNib()
         // Initialization code
     }
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookImage.image = nil
+    }
+}
+extension BookListTableCell : CellConfigurable
+{
     func setup(viewModel: RowViewModel){
         guard let viewModel = (viewModel as? BookRowVM) else {return}
         if let image = URL.init(string:viewModel.bookImage){

@@ -13,8 +13,9 @@
 		D82EEB1524E81D1E00A33846 /* BookListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82EEB1324E81D1E00A33846 /* BookListTableCell.xib */; };
 		D82EEB1724E8238E00A33846 /* TableViewCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EEB1624E8238E00A33846 /* TableViewCellProtocols.swift */; };
 		D83A8F1624EA4DB000E3286C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A8F1524EA4DB000E3286C /* Extensions.swift */; };
+		D83A8F1824EAC1BF00E3286C /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */; };
 		D8C0C05A24E712CE00A47F36 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05524E712CE00A47F36 /* Constant.swift */; };
-		D8C0C05B24E712CE00A47F36 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05724E712CE00A47F36 /* NetworkManager.swift */; };
+		D8C0C05B24E712CE00A47F36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05724E712CE00A47F36 /* APIService.swift */; };
 		D8C0C05C24E712CE00A47F36 /* HomeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05924E712CE00A47F36 /* HomeDataModel.swift */; };
 		D8D3078A24E685710073D695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3078924E685710073D695 /* AppDelegate.swift */; };
 		D8D3078C24E685710073D695 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3078B24E685710073D695 /* SceneDelegate.swift */; };
@@ -50,8 +51,9 @@
 		D82EEB1324E81D1E00A33846 /* BookListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListTableCell.xib; sourceTree = "<group>"; };
 		D82EEB1624E8238E00A33846 /* TableViewCellProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellProtocols.swift; sourceTree = "<group>"; };
 		D83A8F1524EA4DB000E3286C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		D8C0C05524E712CE00A47F36 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		D8C0C05724E712CE00A47F36 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D8C0C05724E712CE00A47F36 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D8C0C05924E712CE00A47F36 /* HomeDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
 		D8D3078624E685710073D695 /* NyTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NyTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D3078924E685710073D695 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +99,8 @@
 		D8C0C05624E712CE00A47F36 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D8C0C05724E712CE00A47F36 /* NetworkManager.swift */,
+				D8C0C05724E712CE00A47F36 /* APIService.swift */,
+				D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -354,11 +357,12 @@
 				D82EEB1424E81D1E00A33846 /* BookListTableCell.swift in Sources */,
 				D8D3078E24E685710073D695 /* HomeViewController.swift in Sources */,
 				D82EEB0D24E7EA2E00A33846 /* Observer.swift in Sources */,
+				D83A8F1824EAC1BF00E3286C /* HomeAPIService.swift in Sources */,
 				D82EEB1724E8238E00A33846 /* TableViewCellProtocols.swift in Sources */,
 				D8D3078A24E685710073D695 /* AppDelegate.swift in Sources */,
 				D82EEB0B24E7375D00A33846 /* HomeViewModel.swift in Sources */,
 				D8C0C05C24E712CE00A47F36 /* HomeDataModel.swift in Sources */,
-				D8C0C05B24E712CE00A47F36 /* NetworkManager.swift in Sources */,
+				D8C0C05B24E712CE00A47F36 /* APIService.swift in Sources */,
 				D8D3078C24E685710073D695 /* SceneDelegate.swift in Sources */,
 				D83A8F1624EA4DB000E3286C /* Extensions.swift in Sources */,
 				D8C0C05A24E712CE00A47F36 /* Constant.swift in Sources */,

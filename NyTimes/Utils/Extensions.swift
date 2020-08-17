@@ -39,7 +39,7 @@ extension UIView{
         let backgroundView = UIView()
         backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         backgroundView.backgroundColor = backgroundColor
-        backgroundView.tag = activityBackgroundViewTag
+        backgroundView.tag = Constant.activityBackgroundViewTag
         var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         activityIndicator = UIActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
         activityIndicator.center = self.center
@@ -48,14 +48,12 @@ extension UIView{
         activityIndicator.color = activityColor
         activityIndicator.startAnimating()
         self.isUserInteractionEnabled = false
-        
         backgroundView.addSubview(activityIndicator)
-        
         self.addSubview(backgroundView)
     }
     
     func activityStopAnimating() {
-        if let background = viewWithTag(activityBackgroundViewTag){
+        if let background = viewWithTag(Constant.activityBackgroundViewTag){
             background.removeFromSuperview()
         }
         self.isUserInteractionEnabled = true

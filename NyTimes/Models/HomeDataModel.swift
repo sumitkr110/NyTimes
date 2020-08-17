@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct HomeDataModel:Codable {
     let status : String
     let copyright : String
