@@ -70,16 +70,5 @@ class NetworkManager {
         self.callAPIWithUrl(url: bookListUrl, completionHandler: completionHandler)
        }
     
-       func getImageFromUrl(url: URL, completionHandler : @escaping (Data?,Error?)->Void)  {
-           urlSession.dataTask(with: url) { data,response,error in
-               if error == nil && (data != nil){
-                   completionHandler(data,nil)
-               }
-               else
-               {
-                   completionHandler(nil,error)
-               }
-           }.resume()
-       }
 }
 

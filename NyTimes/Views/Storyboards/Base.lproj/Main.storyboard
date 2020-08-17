@@ -25,7 +25,7 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x21-6a-czE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="200" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="x21-6a-czE">
                                 <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -43,8 +43,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="NyTimes" id="NqU-vl-iep">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="58z-vW-nrg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="58z-vW-nrg">
+                            <connections>
+                                <action selector="showDatePicker:" destination="BYZ-38-t0r" id="YSo-MT-gz9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePickerButton" destination="58z-vW-nrg" id="1xl-CY-klu"/>
+                        <outlet property="searchBar" destination="NMA-Bw-xgZ" id="zMO-IH-tec"/>
+                        <outlet property="tableView" destination="x21-6a-czE" id="1tK-rn-VIm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

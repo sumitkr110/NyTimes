@@ -15,4 +15,5 @@ struct Constant {
     static let apiKey = "api-key"
 }
 
-
+let activityBackgroundViewTag = 475647
+let tableViewFixedHeight = 128.0
