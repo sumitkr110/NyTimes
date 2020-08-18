@@ -16,8 +16,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var datePicker : UIDatePicker = UIDatePicker()
     let dataSource = HomeTableViewDataSource()
     let delegate = HomeTableViewDelegate()
+    let apiservice = APIService()
     lazy var viewModel : HomeViewModel = {
-        let viewModel = HomeViewModel(dataSource:dataSource , delegate: delegate)
+        let viewModel = HomeViewModel(dataSource:dataSource , delegate: delegate, apiService: apiservice )
         return viewModel
     }()
     
@@ -30,13 +31,13 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.bindData()
     }
     //Table View SetUp
-    func configureTableView() {
+    private func configureTableView() {
         tableView.dataSource = dataSource
         tableView.delegate = delegate
         tableView.register(UINib.init(nibName:BookListTableCell.cellIdentifier() , bundle: nil), forCellReuseIdentifier: BookListTableCell.cellIdentifier())
     }
     //Data binding with View Model
-    func bindData(){
+    private func bindData(){
         viewModel.errorResult.addObserver(fireNow: false) { [weak self] errorResult in
             DispatchQueue.main.async {
                self?.tableView.isHidden = true
@@ -66,7 +67,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.showDatePicker()
         searchBar.resignFirstResponder()
     }
-    func showAlertWithErrorResult(result:ErrorResult) {
+    private func showAlertWithErrorResult(result:ErrorResult) {
         let alert = UIAlertController(title: result.errorTitle, message: result.errorMessage, preferredStyle: UIAlertController.Style.alert)
         if result.errorTitle == Constant.noBookAlertTitle {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.showDatePicker()
@@ -80,7 +81,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 //MARK: - Date Picker implementation
 extension HomeViewController{
     
-    func showDatePicker(){
+    private func showDatePicker(){
        if datePickerView == nil {
             self.searchBar.text = ""
             datePickerView = UIView(frame: CGRect(x: 0, y: view.frame.height - CGFloat(Constant.datePickerViewHeight), width: view.frame.width, height: CGFloat(Constant.datePickerViewHeight)))
@@ -97,7 +98,7 @@ extension HomeViewController{
         }
     }
     
-    func getConfiguredToolBarForDatePicker() -> UIToolbar {
+    private func getConfiguredToolBarForDatePicker() -> UIToolbar {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: datePickerView!.frame.width, height: CGFloat(Constant.toolBarHeight)))
         toolbar.barStyle = .black
         toolbar.isTranslucent =  true
@@ -124,18 +125,18 @@ extension HomeViewController{
 //MARK: - UISearchBarDelegate implementation
 extension HomeViewController : UISearchBarDelegate
 {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.viewModel.filterBooksForSearchText(searchText: searchText)
         if searchText.isEmpty{
             searchBar.resignFirstResponder()
         }
     }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         self.viewModel.filterBooksForSearchText(searchText: "")
     }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }

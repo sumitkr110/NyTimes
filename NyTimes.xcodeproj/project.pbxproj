@@ -13,10 +13,10 @@
 		D82EEB1524E81D1E00A33846 /* BookListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82EEB1324E81D1E00A33846 /* BookListTableCell.xib */; };
 		D82EEB1724E8238E00A33846 /* TableViewCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EEB1624E8238E00A33846 /* TableViewCellProtocols.swift */; };
 		D83A8F1624EA4DB000E3286C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A8F1524EA4DB000E3286C /* Extensions.swift */; };
-		D83A8F1824EAC1BF00E3286C /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */; };
 		D872FACC24EB001300F1ACC2 /* HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D872FACB24EB001300F1ACC2 /* HomeTableViewDelegate.swift */; };
 		D872FACE24EB001D00F1ACC2 /* HomeTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D872FACD24EB001D00F1ACC2 /* HomeTableViewDataSource.swift */; };
 		D872FAD024EB004800F1ACC2 /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D872FACF24EB004700F1ACC2 /* GenericDataSource.swift */; };
+		D8AF1A4A24EC79DE00C89A8E /* HomeAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AF1A4924EC79DE00C89A8E /* HomeAPIServiceProtocol.swift */; };
 		D8C0C05A24E712CE00A47F36 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05524E712CE00A47F36 /* Constant.swift */; };
 		D8C0C05B24E712CE00A47F36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05724E712CE00A47F36 /* APIService.swift */; };
 		D8C0C05C24E712CE00A47F36 /* HomeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0C05924E712CE00A47F36 /* HomeDataModel.swift */; };
@@ -54,10 +54,10 @@
 		D82EEB1324E81D1E00A33846 /* BookListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListTableCell.xib; sourceTree = "<group>"; };
 		D82EEB1624E8238E00A33846 /* TableViewCellProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellProtocols.swift; sourceTree = "<group>"; };
 		D83A8F1524EA4DB000E3286C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		D872FACB24EB001300F1ACC2 /* HomeTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewDelegate.swift; sourceTree = "<group>"; };
 		D872FACD24EB001D00F1ACC2 /* HomeTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewDataSource.swift; sourceTree = "<group>"; };
 		D872FACF24EB004700F1ACC2 /* GenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
+		D8AF1A4924EC79DE00C89A8E /* HomeAPIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIServiceProtocol.swift; sourceTree = "<group>"; };
 		D8C0C05524E712CE00A47F36 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D8C0C05724E712CE00A47F36 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D8C0C05924E712CE00A47F36 /* HomeDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
@@ -106,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				D8C0C05724E712CE00A47F36 /* APIService.swift */,
-				D83A8F1724EAC1BE00E3286C /* HomeAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -243,6 +242,7 @@
 			children = (
 				D82EEB1624E8238E00A33846 /* TableViewCellProtocols.swift */,
 				D872FACF24EB004700F1ACC2 /* GenericDataSource.swift */,
+				D8AF1A4924EC79DE00C89A8E /* HomeAPIServiceProtocol.swift */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -385,11 +385,11 @@
 				D872FACE24EB001D00F1ACC2 /* HomeTableViewDataSource.swift in Sources */,
 				D82EEB0D24E7EA2E00A33846 /* Observer.swift in Sources */,
 				D872FAD024EB004800F1ACC2 /* GenericDataSource.swift in Sources */,
-				D83A8F1824EAC1BF00E3286C /* HomeAPIService.swift in Sources */,
 				D82EEB1724E8238E00A33846 /* TableViewCellProtocols.swift in Sources */,
 				D8D3078A24E685710073D695 /* AppDelegate.swift in Sources */,
 				D82EEB0B24E7375D00A33846 /* HomeViewModel.swift in Sources */,
 				D8C0C05C24E712CE00A47F36 /* HomeDataModel.swift in Sources */,
+				D8AF1A4A24EC79DE00C89A8E /* HomeAPIServiceProtocol.swift in Sources */,
 				D8C0C05B24E712CE00A47F36 /* APIService.swift in Sources */,
 				D8D3078C24E685710073D695 /* SceneDelegate.swift in Sources */,
 				D83A8F1624EA4DB000E3286C /* Extensions.swift in Sources */,

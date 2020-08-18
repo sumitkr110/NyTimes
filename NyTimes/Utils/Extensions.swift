@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: URL) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+    func downloaded(from url: URL) {
         let cache = URLCache.shared
         let request = URLRequest.init(url: url)
         
@@ -61,7 +61,7 @@ extension UIView{
 }
 
 extension UITableViewCell {
-    /// Generated cell identifier derived from class name
+    /// Generates cell identifier derived from class name
     public static func cellIdentifier() -> String {
         return String(describing: self)
     }

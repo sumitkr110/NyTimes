@@ -21,14 +21,16 @@ class HomeViewModel {
     var isLoading = Observable<Bool> (value: true)
     var isFiltering: Bool = false
     var bookCount = Observable<Int> (value: 0)
+    var apiService : APIService
     
     var errorResult = Observable<ErrorResult?>(value: nil)
-    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?) {
+    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?, apiService:APIService) {
         self.dataSource = dataSource
         self.delegate = delegate
+        self.apiService = apiService
     }
     func fetchBookListForDate(date : String)  {
-        HomeAPIService.getBookListForPublishedDate(date:date) {[weak self] (result) in
+        self.apiService.getBookListForPublishedDate(date:date) {[weak self] (result) in
             switch result{
             case .success(let homeDataModel):
                 self?.buildVMs(homeDataModel: homeDataModel)
@@ -47,18 +49,18 @@ class HomeViewModel {
             }
         }
     }
-    func buildVMs(homeDataModel:HomeDataModel) {
+    private func buildVMs(homeDataModel:HomeDataModel) {
         var sections = [SectionViewModel]()
         let resultList = homeDataModel.results.lists
-            for list in resultList{
-                var rows = [BookRowVM]()
-                for book in list.books {
-                    let row = BookRowVM(bookTitle:book.title , bookAuthor: book.author, bookPublisher: (book.publisher), bookContributor: (book.contributor), bookDescription: book.description, bookImage: book.bookImage!)
-                    rows.append(row)
-                }
-                let section = SectionViewModel(rowViewModels: rows, headerTitle: list.displayName)
-                sections.append(section)
+        for list in resultList{
+            var rows = [BookRowVM]()
+            for book in list.books {
+                let row = BookRowVM(bookTitle:book.title , bookAuthor: book.author, bookPublisher: (book.publisher), bookContributor: (book.contributor), bookDescription: book.description, bookImage: book.bookImage!)
+                rows.append(row)
             }
+            let section = SectionViewModel(rowViewModels: rows, headerTitle: list.displayName)
+            sections.append(section)
+        }
         bookList = sections
         self.dataSource?.data.value = sections
         self.delegate?.data.value = sections
@@ -80,7 +82,7 @@ class HomeViewModel {
             }
         }
     }
-    func filterBooksForSectionWithSeachText(section:[BookRowVM],searchText:String)->[BookRowVM] {
+    private func filterBooksForSectionWithSeachText(section:[BookRowVM],searchText:String)->[BookRowVM] {
         var filteredSections = [BookRowVM]()
         filteredSections = section.filter { (book: BookRowVM) -> Bool in
             return book.bookTitle.lowercased().contains(searchText.lowercased()) || book.bookAuthor.lowercased().contains(searchText.lowercased()) || book.bookPublisher.lowercased().contains(searchText.lowercased()) || book.bookContributor.lowercased().contains(searchText.lowercased())
