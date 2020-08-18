@@ -37,12 +37,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     //Data binding with View Model
     func bindData(){
-        viewModel.bookCount.addObserver(fireNow: false) { [weak self] bookCount in
+        viewModel.errorResult.addObserver(fireNow: false) { [weak self] errorResult in
             DispatchQueue.main.async {
-                if bookCount == 0{
                self?.tableView.isHidden = true
-               self?.showAlertForBookUnavailability()
-                }
+                self?.showAlertWithErrorResult(result:errorResult!)
             }
         }
         viewModel.filteredList.addObserver(fireNow: false) { [weak self] _ in
@@ -68,11 +66,13 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.showDatePicker()
         searchBar.resignFirstResponder()
     }
-    func showAlertForBookUnavailability() {
-        let alert = UIAlertController(title: Constant.noBookAlertTitle, message: Constant.noBookAlertMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.showDatePicker()
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+    func showAlertWithErrorResult(result:ErrorResult) {
+        let alert = UIAlertController(title: result.errorTitle, message: result.errorMessage, preferredStyle: UIAlertController.Style.alert)
+        if result.errorTitle == Constant.noBookAlertTitle {
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.showDatePicker()
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

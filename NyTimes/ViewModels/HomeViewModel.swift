@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+struct ErrorResult  {
+    let errorMessage : String
+    let errorTitle : String
+    
+}
 class HomeViewModel {
     var dataSource : GenericDataSource<SectionViewModel>?
     var delegate : GenericDataSource<SectionViewModel>?
@@ -16,6 +21,8 @@ class HomeViewModel {
     var isLoading = Observable<Bool> (value: true)
     var isFiltering: Bool = false
     var bookCount = Observable<Int> (value: 0)
+    
+    var errorResult = Observable<ErrorResult?>(value: nil)
     init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?) {
         self.dataSource = dataSource
         self.delegate = delegate
@@ -32,9 +39,10 @@ class HomeViewModel {
                 self?.isLoading.value = false
                 switch error {
                 case .decodeError:
-                    self?.bookCount.value = 0//Setting the viewModel bookCount to 0 to show book unavailability alert as we are getting inconsistent response from backend. In case of Empty result we are getting Array in response but we are expecting dictionary
+                    self?.errorResult.value = ErrorResult.init(errorMessage: Constant.noBookAlertMessage, errorTitle:Constant.noBookAlertTitle)
+                //Setting the custom Error to show book unavailability alert as we are getting inconsistent response from backend. In case of Empty result we are getting Array in response but we are expecting dictionary
                 default:
-                    ""
+                    self?.errorResult.value = ErrorResult.init(errorMessage: Constant.generalAlertMessage, errorTitle:Constant.generalAlertTitle)
                 }
             }
         }

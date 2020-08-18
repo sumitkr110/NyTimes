@@ -22,7 +22,9 @@ struct Constant {
     static let tableViewSectionBackgroundColor = UIColor.init(displayP3Red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
     static let tableViewSectionTitleFont = UIFont.init(name: "Verdana-Bold", size: 18)
     static let noBookAlertMessage = "There are no books available for the selected date.Would you like to select a different date?"
-    static let noBookAlertTitle = "There are no books available for the selected date.Would you like to select a different date?"
+    static let noBookAlertTitle = "Sorry"
+    static let generalAlertMessage = "Something went wrong.Try again after sometime"
+    static let generalAlertTitle = "Error"
 }
 
 
