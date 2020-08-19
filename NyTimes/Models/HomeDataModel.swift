@@ -47,15 +47,15 @@ struct ResultList:Codable {
     let books : [Book]
     
     enum CodingKeys: String, CodingKey {
-    case listId = "list_id"
-    case listName = "list_name"
-    case listNameEncoded = "list_name_encoded"
-    case displayName = "display_name"
-    case updated
-    case listImage = "list_image"
-    case listImageWidth = "list_image_width"
-    case listImageHeight = "list_image_height"
-    case books
+        case listId = "list_id"
+        case listName = "list_name"
+        case listNameEncoded = "list_name_encoded"
+        case displayName = "display_name"
+        case updated
+        case listImage = "list_image"
+        case listImageWidth = "list_image_width"
+        case listImageHeight = "list_image_height"
+        case books
     }
 }
 
@@ -87,31 +87,31 @@ struct Book:Codable {
     let buyLinks : [BuyLink]?
     
     enum CodingKeys: String, CodingKey {
-    case ageGroup = "age_group"
-    case amazonProductUrl = "amazon_product_url"
-    case articleChapterLink = "article_chapter_link"
-    case author
-    case bookImage = "book_image"
-    case bookImageWidth = "book_image_width"
-    case bookImageHeight = "book_image_height"
-    case bookReviewLink = "book_review_link"
-    case contributor
-    case contributorNote = "contributor_note"
-    case createdDate = "created_date"
-    case description
-    case firstChapterLink = "first_chapter_link"
-    case price
-    case primaryIsbn10 = "primary_isbn10"
-    case primaryIsbn13 = "primary_isbn13"
-    case bookUri = "book_uri"
-    case publisher
-    case rank
-    case rankLastWeek = "rank_last_week"
-    case sundayReviewLink = "sunday_review_link"
-    case title
-    case updatedDate = "updated_date"
-    case weekOnList = "weeks_on_list"
-    case buyLinks = "buy_links"
+        case ageGroup = "age_group"
+        case amazonProductUrl = "amazon_product_url"
+        case articleChapterLink = "article_chapter_link"
+        case author
+        case bookImage = "book_image"
+        case bookImageWidth = "book_image_width"
+        case bookImageHeight = "book_image_height"
+        case bookReviewLink = "book_review_link"
+        case contributor
+        case contributorNote = "contributor_note"
+        case createdDate = "created_date"
+        case description
+        case firstChapterLink = "first_chapter_link"
+        case price
+        case primaryIsbn10 = "primary_isbn10"
+        case primaryIsbn13 = "primary_isbn13"
+        case bookUri = "book_uri"
+        case publisher
+        case rank
+        case rankLastWeek = "rank_last_week"
+        case sundayReviewLink = "sunday_review_link"
+        case title
+        case updatedDate = "updated_date"
+        case weekOnList = "weeks_on_list"
+        case buyLinks = "buy_links"
     }
 }
 

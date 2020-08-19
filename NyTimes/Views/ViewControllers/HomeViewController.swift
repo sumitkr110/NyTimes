@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     private func bindData(){
         viewModel.errorResult.addObserver(fireNow: false) { [weak self] errorResult in
             DispatchQueue.main.async {
-               self?.tableView.isHidden = true
+                self?.tableView.isHidden = true
                 self?.showAlertWithErrorResult(result:errorResult!)
             }
         }
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 else{
                     self?.view.activityStopAnimating()
                     self?.tableView.isHidden = false
-                     self?.tableView.reloadData()
+                    self?.tableView.reloadData()
                 }
             }
         }
@@ -82,7 +82,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 extension HomeViewController{
     
     private func showDatePicker(){
-       if datePickerView == nil {
+        if datePickerView == nil {
             self.searchBar.text = ""
             datePickerView = UIView(frame: CGRect(x: 0, y: view.frame.height - CGFloat(Constant.datePickerViewHeight), width: view.frame.width, height: CGFloat(Constant.datePickerViewHeight)))
             datePickerView?.backgroundColor = .white
@@ -125,18 +125,18 @@ extension HomeViewController{
 //MARK: - UISearchBarDelegate implementation
 extension HomeViewController : UISearchBarDelegate
 {
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.viewModel.filterBooksForSearchText(searchText: searchText)
         if searchText.isEmpty{
             searchBar.resignFirstResponder()
         }
     }
-     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         self.viewModel.filterBooksForSearchText(searchText: "")
     }
-     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }

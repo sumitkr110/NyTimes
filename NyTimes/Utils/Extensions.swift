@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
+    //Downloads and caches images
     func downloaded(from url: URL) {
         let cache = URLCache.shared
         let request = URLRequest.init(url: url)

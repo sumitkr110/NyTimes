@@ -11,8 +11,8 @@ import XCTest
 class HomeAPIServiceTests : XCTestCase{
     let apiService = MockHomeAPIServiceClient()
     override func setUpWithError() throws {
-           // Put setup code here. This method is called before the invocation of each test method in the class.
-       }
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
     func testGetBookListForPublishedDateResponse()  {
         
         let expectation = self.expectation(description: "Home Data Response Successful")
@@ -30,8 +30,8 @@ class HomeAPIServiceTests : XCTestCase{
         }
         self.waitForExpectations(timeout: 10.0, handler: nil)
     }
-       override func tearDownWithError() throws {
-           // Put teardown code here. This method is called after the invocation of each test method in the class.
-       }
-
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
 }

@@ -22,15 +22,15 @@ class HomeViewModel {
     var isFiltering: Bool = false
     var bookCount = Observable<Int> (value: 0)
     var errorResult = Observable<ErrorResult?>(value: nil)
-    var apiService : HomeAPIServiceProtocol
+    var apiService : HomeAPIServiceProtocol?
     
-    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?, apiService:HomeAPIServiceProtocol) {
+    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?, apiService:HomeAPIServiceProtocol?) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.apiService = apiService
     }
     func fetchBookListForDate(date : String)  {
-        self.apiService.getBookListForPublishedDate(date:date) {[weak self] (result) in
+        self.apiService?.getBookListForPublishedDate(date:date) {[weak self] (result) in
             switch result{
             case .success(let homeDataModel):
                 self?.buildVMs(homeDataModel: homeDataModel)
@@ -49,7 +49,7 @@ class HomeViewModel {
             }
         }
     }
-    private func buildVMs(homeDataModel:HomeDataModel) {
+    func buildVMs(homeDataModel:HomeDataModel) {
         var sections = [SectionViewModel]()
         let resultList = homeDataModel.results.lists
         for list in resultList{
