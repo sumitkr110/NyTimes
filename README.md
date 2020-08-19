@@ -11,12 +11,17 @@ MVVM -
 Protocol Oriented Programming - 
 - For writing loosely coupled code
 - For creating Dependency Injection
+- For code scalability
 
-
-Dependency Injection - 
+Dependency Injection - (No 3rd party dependency like swinject, just used constructors for injection)
 - Again for loosely coupled codes
 - For creating Mock classes for testing APIServices without network
+- Improving testability
 
-For Network Calls :-
-NSURLSession - APIService.swift
+Network Calls :-
+NSURLSession - (APIService.swift) 
+- Have not considered other HTTP Requests like POST etc.
+- Have kept class as simple as possible, related to our Demo
+- Can be scaled to accomodate other kind of network calls
+                                    
 
