@@ -21,10 +21,10 @@ class HomeViewModel {
     var isLoading = Observable<Bool> (value: true)
     var isFiltering: Bool = false
     var bookCount = Observable<Int> (value: 0)
-    var apiService : APIService
-    
     var errorResult = Observable<ErrorResult?>(value: nil)
-    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?, apiService:APIService) {
+    var apiService : HomeAPIServiceProtocol
+    
+    init(dataSource : GenericDataSource<SectionViewModel>?,delegate : GenericDataSource<SectionViewModel>?, apiService:HomeAPIServiceProtocol) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.apiService = apiService
