@@ -69,10 +69,8 @@ extension MockHomeAPIServiceClient : HomeAPIServiceProtocol{
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd"
         if let _ = dateFormatterGet.date(from: dateString) {
-            //date parsing succeeded, if you need to do additional logic, replace _ with some variable name i.e date
             return true
         } else {
-            // Invalid date
             return false
         }
     }

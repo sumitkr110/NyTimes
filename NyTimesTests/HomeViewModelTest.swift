@@ -21,13 +21,6 @@ class HomeViewModelTest: XCTestCase {
         getHomeDataForSearch()
     }
     
-    func testHomeViewModelFetchDataWithFutureDate()  {
-        // let futureDate = "2021-07-22"
-        // Passing future will fail the test case
-        homeViewModel.fetchBookListForDate(date: "2020-07-22")
-        
-    }
-    
     func testHomeViewModelFetchDataWithInvalidDate()  {
         // let invalidDate = "2019-08-40"
         // Passing invalidDate will fail the test case
